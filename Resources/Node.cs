@@ -3,11 +3,11 @@ namespace Resources;
 using System.Text;
 using Types;
 
-public class Node<T>(T value, INode<T>? root) : INode<T> where T : IComparable<T>
+public class Node<T>(T value, Node<T>? root) : INode<T, Node<T>>, IComparable<Node<T>> where T : IComparable<T>
 {
-  public INode<T>? Root { get; private set; } = root;
-  public INode<T>? LeftChildren { get; private set; } = null;
-  public INode<T>? RightChildren { get; private set; } = null;
+  public Node<T>? Root { get; private set; } = root;
+  public Node<T>? LeftChildren { get; private set; } = null;
+  public Node<T>? RightChildren { get; private set; } = null;
   public T Value { get; private set; } = value;
   public int Grade { get {
     int counter = 0;
@@ -39,8 +39,14 @@ public class Node<T>(T value, INode<T>? root) : INode<T> where T : IComparable<T
 
     RightChildren.Append(value);
   }
-  
-  public override string ToString() {
+
+    public int CompareTo(Node<T>? other)
+    {
+      if (other == null) return 1;
+      return other.Value.CompareTo(Value);
+    }
+
+    public override string ToString() {
 
     StringBuilder returnText = new();
 

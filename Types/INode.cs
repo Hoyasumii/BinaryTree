@@ -1,9 +1,9 @@
 namespace Types;
 
-public interface INode<T> {
-  INode<T>? Root { get; }
-  INode<T>? LeftChildren { get; }
-  INode<T>? RightChildren { get; }
+public interface INode<T, NodeType> where T : IComparable<T> where NodeType : INode<T, NodeType> {
+  NodeType? Root { get; }
+  NodeType? LeftChildren { get; }
+  NodeType? RightChildren { get; }
   T Value { get; }
   int Grade { get; }
 

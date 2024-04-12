@@ -1,12 +1,19 @@
 namespace Resources.ExtensionMethods;
 
+using Resources;
 using Types;
 
 public static class EMToPreOrder {
-  public static T[] ToPreOrder<T>(this INode<T> node) where T: IComparable<T> {
+  public static T[] ToPreOrder<T>(this Node<T> node) where T : IComparable<T> {
     if (node.Grade == 0) return [node.Value];
+    Resources.Stack<Node<T>> stack = null!;
+    
+    if (node.RightChildren != null) {
+      stack.Push(node.RightChildren);
+    }
+
     // T[] preOrderedArray = new T[];
-    INode<T> current = node;
+    // Node<T> current = node;
 
 
     // while (node.LeftChildren != null) {
