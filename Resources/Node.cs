@@ -6,8 +6,8 @@ using Types;
 public class Node<T>(T value, INode<T>? root) : INode<T> where T : IComparable<T>
 {
   public INode<T>? Root { get; private set; } = root;
-  public INode<T>? LeftChildren { get; private set; }
-  public INode<T>? RightChildren { get; private set; }
+  public INode<T>? LeftChildren { get; private set; } = null;
+  public INode<T>? RightChildren { get; private set; } = null;
   public T Value { get; private set; } = value;
   public int Grade { get {
     int counter = 0;
@@ -47,18 +47,12 @@ public class Node<T>(T value, INode<T>? root) : INode<T> where T : IComparable<T
     returnText.AppendLine($"About: Grade {Grade} Node<{typeof(T)}>");
     returnText.AppendLine($"Value: {Value}");
 
-    if (Root != null) {
-      returnText.AppendLine($"Root: {Root.Value}");
-    }
+    if (Root != null) returnText.AppendLine($"Root: {Root.Value}");
 
-    if (LeftChildren != null) {
-      returnText.AppendLine($"Left: {LeftChildren.Value}");
-    }
+    if (LeftChildren != null) returnText.AppendLine($"Left: {LeftChildren.Value}");
 
-    if (RightChildren != null) {
-      returnText.AppendLine($"Right: {RightChildren.Value}");
-    }
-
+    if (RightChildren != null) returnText.AppendLine($"Right: {RightChildren.Value}");
+    
     return returnText.ToString();
   }
 
