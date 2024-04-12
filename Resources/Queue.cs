@@ -4,7 +4,7 @@ namespace Resources;
 
 public class Queue<T>(T value) : IQueue<T, BaseItem<T>> where T : IComparable<T>
 {
-    public BaseItem<T> CurrentValue { get;  set; } = new(value);
+    public BaseItem<T> CurrentValue { get;  private set; } = new(value);
 
     public T Front {
       get {
